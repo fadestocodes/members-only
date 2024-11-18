@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<body>
+    <%-include('partials/navbar') %>
+    <div style="display: flex; flex-direction: column;">
+        <form action="/sign-up" method="POST">
+            <label for="firstName">First Name:</label>
+            <input type="text" name="firstName" id="firstName" placeholder="John"  value="<%= old.firstName || '' %>" required >
+            <% if (errors.some(e=>e.path === 'firstName')){ %>
+                <div style="color: red;"><%=errors.find(e=>e.path === 'firstName').msg%></div>
+            <%}%>
+        
+            <label for="lastName">Last Name:</label>
+            <input type="text" name="lastName" id="lastName" placeholder="Doe" value="<%= old.lastName || ''%>" required >
+            <% if (errors.some(e=>e.path === 'lastName')){ %>
+                <div style="color: red;"><%=errors.find(e=>e.path === 'lastName').msg%></div>
+            <%}%>
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" placeholder="username123" value="<%= old.username || '' %>" required >
+            <% if (errors.some(e=>e.path === 'username')){ %>
+                <div style="color: red;"><%=errors.find(e=>e.path === 'username').msg%></div>
+            <%}%>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password"   required >
+            <% if (errors.some(e=>e.path === 'password')){ %>
+                <div style="color: red;"><%=errors.find(e=>e.path === 'password').msg%></div>
+            <%}%>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" name="confirmPassword" id="confirmPassword" required >
+            <% if (errors.some(e=>e.path === 'confirmPassword')){ %>
+                <div style="color: red;"><%=errors.find(e=>e.path === 'confirmPassword').msg%></div>
+            <%}%>
+            <button type="submit">Sign Up!</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+</head>
+<body>
+    <%-include('partials/navbar') %>
+    <h1>Welcome To The Homepage</h1>
+    <% if (locals.user){ %>
+        <h2>Welcom back <%=user.username%></h2> <br><hr>
+        <% for (let i=allMessages.length-1; i>=0 ; i-- ){ %>
+
+            <%if (locals.user['membership_status'] !== 'vip'){%>
+               <br> <p><strong>anonymous: </strong><%=allMessages[i]['message_content']%></p>
+            <%} else {%>
+                
+                <p><strong><%=allMessages[i].username%>: </strong><%=allMessages[i]['message_content']%></p>
+                    <small><%=allMessages[i]['date_added']%></small> <br><br>
+            <%}%>
+        <%}%>
+
+        <hr><a href="/logout">Click here to log out</a>
+        <% if (locals.user['membership_status'] !== 'vip'){ %>
+            <br> <br> To see who wrote the messages... <a href="/join-club">join the club</a>
+        <%}%>
+    <%} else { %>
+        
+        <a href="/sign-up">
+            <p>Click Here To Sign Up</p>
+        </a>
+        Or If You Have an Account <a href="/login">Login</a> <br><br><br>
+    <% } %>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<nav>
+    <div class="navbar" style="display: flex; gap: 5%; justify-content: center;">
+        <a href="/">Home</a>
+        <%if (!locals.user) { %>
+            <a href="/sign-up">Sign Up</a>
+            <a href="/login">Log In</a>
+        <%} else {%>
+            <a href="/new-message">Create New Message</a>
+            <a href="/logout">Log Out</a>
+        <%}%>
+        <a href="/account">Account</a>
+        <%if (locals.user && locals.user['membership_status'] !== 'vip'){ %>
+            <a href="/join-club">... join the club</a>
+        <%}%>
+    </div>
+</nav>
